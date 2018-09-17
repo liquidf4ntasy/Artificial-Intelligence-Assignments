@@ -1,0 +1,92 @@
+Name: Satyajit Deshmukh
+Id: 1001417727
+-----------------------------
+
+Evaluation Function
+-----------------------------
+There are two players; their names are Max and Min. There are two utility function Calculate_Max_Utility & Calculate_Min_Utility,
+which give a score at the end of a play; this is when a terminal state is reached. 
+The function findBestPlay gives back an operator from a game.
+
+// sample code  with some lines omitted.
+public int findBestPlay(GameBoard currentGame) 
+	{
+        int AIplay = 99;
+        if (currentGame.getCurrentTurn() == 1) {
+                    int value = Calculate_Max_Utility(nextMoveBoard, depth, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                    if (v > value) {
+                    	AIplay = i;
+                        v = value;
+                    }
+        } else {
+
+                if (currentGame.isValidPlay(i)) {
+                    int value = Calculate_Min_Utility(nextMoveBoard, depth, Integer.MIN_VALUE, Integer.MAX_VALUE);
+
+                    if (v < value) {
+                    	AIplay = i;
+                        v = value;
+        }
+       
+        return AIplay;
+	}
+	
+
+The functions Calculate_Max_Utility and Calculate_Min_Utility are the eval functions used.
+These functions calculate the aplha-beta values and the utility values for each of the nodes of the game search tree.
+they return an integer which is the best value for the MAX/MIN players.
+
+// Code for the evaluation functions used.
+// ---------------------------------------
+// ---------------------------------------
+private int Calculate_Min_Utility(GameBoard gameBoard, int depth_level, int alpha_value, int beta_value) {
+            if (gameBoard.IsBoardFull() || depth_level == 0) {
+            	 return gameBoard.getScore(2) - gameBoard.getScore(1);
+            }else{
+                int v = Integer.MAX_VALUE;
+                for (int i = 0; i < 7; i++) {
+                    if (gameBoard.isValidPlay(i)) {
+                        GameBoard board4NextMove = new GameBoard(gameBoard.getGameBoard());
+                        board4NextMove.playPiece(i);
+                        int value = Calculate_Max_Utility(board4NextMove, depth_level - 1, alpha_value, beta_value);
+                        if (v > value) {
+                            v = value;
+                        }
+                        if (v <= alpha_value) {
+                            return v;
+                        }
+                        if (beta_value > v) {
+                            beta_value = v;
+                        }
+                    }
+                }
+                return v;
+            } 
+        }
+    private int Calculate_Max_Utility(GameBoard gameBoard, int depth_level, int alpha_value, int beta_value) {
+            
+    	if (gameBoard.IsBoardFull() || depth_level == 0) {
+       	 return gameBoard.getScore(2) - gameBoard.getScore(1);
+       } else{
+    	   int v = Integer.MIN_VALUE;
+                for (int i = 0; i < 7; i++) {
+                    if (gameBoard.isValidPlay(i)) {
+                        GameBoard board4NextMove = new GameBoard(gameBoard.getGameBoard());
+                        board4NextMove.playPiece(i);
+                        int value = Calculate_Min_Utility(board4NextMove, depth_level - 1, alpha_value, beta_value);
+                        if (v < value) {
+                            v = value;
+                        }
+                        if (v >= beta_value) {
+                            return v;
+                        }
+                        if (alpha_value < v) {
+                            alpha_value = v;
+                        }
+                    }
+                }
+                return v;
+            } 
+    }
+// ---------------------------------------
+// ---------------------------------------

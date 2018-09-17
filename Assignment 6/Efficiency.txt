@@ -1,0 +1,15 @@
+The program terminates under 120seconds when the additional knowledge file contains specific information about at least 48 of the symbols.
+
+
+
+[sxd7727@omega wumpu]$ time java CheckTrueFalse my_wumpus_rules.txt my_kb.txt my_statement.txt
+
+loading the wumpus rules...
+loading the additional knowledge...
+// Skipped some lines from input files.
+Processing....
+Final Answer = both true and false
+
+real    0m2.789s
+user    0m3.037s
+sys     0m0.223s

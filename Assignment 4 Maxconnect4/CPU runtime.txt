@@ -1,0 +1,45 @@
+Name:Satyajit Deshmukh
+UTA ID: 1001417727
+
+CPU runtime (for making a single move) vs depth, when the board is empty.
+(All measurements done on omega)
+time java maxconnect4 one-move input1.txt output.txt 1
+
+Depth 1
+user    0.118s
+
+Depth 2
+user    0.083s
+
+Depth 3
+user    0.115s
+
+Depth 4
+user    0.130s
+
+Depth 5
+user    0.266s
+
+Depth 6
+user    0.281s
+
+Depth 7
+user    0.568s
+
+Depth 8
+user    0.701s
+
+Depth 9
+user    2.653s
+
+Depth 10
+user    4.139s
+
+Depth 11
+user    4.840s
+
+Depth 12
+user    21.034s
+
+Depth 13
+user    1m3.175s
